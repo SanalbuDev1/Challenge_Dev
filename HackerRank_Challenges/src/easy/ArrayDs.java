@@ -21,6 +21,7 @@ public class ArrayDs {
             * The function accepts INTEGER_ARRAY a as parameter.
      */
 
+    // java 8 poo
     public static List<Integer> reverseArray(List<Integer> a) {
 
         List<Integer> b = new ArrayList<>();
@@ -28,7 +29,19 @@ public class ArrayDs {
             b.add(a.get(i));
         }
         return b;
+    }
 
+    // java 8 functional
+    public static List<Integer> reverseArrayFunctional(List<Integer> a) {
+
+        return IntStream.range(0, a.size())
+                .mapToObj(i -> a.get(i).toString())
+                .collect(Collectors.collectingAndThen(Collectors.toList(), l -> {
+                    Collections.reverse(l);
+                    return l.stream();
+                }))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
 
     }
 
@@ -45,7 +58,7 @@ class Solution {
                 .map(Integer::parseInt)
                 .collect(toList());
 
-        List<Integer> res = ArrayDs.reverseArray(arr);
+        List<Integer> res = ArrayDs.reverseArrayFunctional(arr);
 
         for(Integer p: res) {
            System.out.println(p);
