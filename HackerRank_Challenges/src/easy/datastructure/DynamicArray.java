@@ -1,4 +1,4 @@
-package easy;
+package easy.datastructure;
 
 import java.io.*;
 import java.math.*;
